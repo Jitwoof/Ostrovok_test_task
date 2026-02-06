@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Hotel Booking API
+  version: 1.0.0
+  description: Минимальный набор для бронирования отелей
+
+paths:
+  /hotels:
+    get:
+      summary: Поиск отелей
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: check_in
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                - id: "hotel_123"
+                  name: "Grand Hotel"
+                  price: 5000
+
+  /hotels/{id}/availability:
+    get:
+      summary: Проверить доступность номеров
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: check_in
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Отель не найден
+
+  /bookings:
+    post:
+      summary: Создать бронирование
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel_id:
+                  type: string
+                check_in:
+                  type: string
+                  format: date
+      responses:
+        '201':
+          description: Бронирование создано
+        '400':
+          description: Ошибка валидации
+
+  /bookings/{id}:
+    get:
+      summary: Получить информацию о бронировании
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Бронирование не найдено
+
+  /bookings/{id}/cancel:
+    put:
+      summary: Отменить бронирование
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Бронирование отменено
+        '400':
+          description: Невозможно отменить бронирование
