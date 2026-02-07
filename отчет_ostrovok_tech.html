@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчёт по тестовому заданию - Integration Specialist</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --gray-light: #e2e8f0;
+            --gray-medium: #94a3b8;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .nav-link {
+            padding: 0.7rem 1.5rem;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* Tables */
+        .responsive-table {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Cards & Boxes */
+        .info-card {
+            background-color: #f0f9ff;
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .partner-response {
+            background-color: #f7fee7;
+            border-left: 5px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-style: italic;
+        }
+
+        .error-box {
+            background-color: #fef2f2;
+            border-left: 5px solid var(--danger-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 5px solid var(--warning-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        /* Tags & Badges */
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-api {
+            background-color: #dbeafe;
+            color: var(--primary-color);
+        }
+
+        .tag-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag-warning {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .tag-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Code blocks */
+        code {
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #dc2626;
+        }
+
+        .code-block {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-light);
+            color: var(--gray-medium);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Методология */
+        .methodology {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .methodology-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .methodology-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Сводная таблица */
+        .summary-table {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>Тестовое задание "Integration Specialist"</h1>
+                    <p class="subtitle">Отчёт по выполнению заданий для "Островок Tech"</p>
+                </div>
+                <div>
+                    <p><strong>Кандидат:</strong> Юлиана Я.</p>
+                    <p><strong>Дата: 06.02.2026 </strong> <span id="current-date"></span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Навигация -->
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#methodology" class="nav-link"><i class="fas fa-book"></i> Методология</a>
+                <a href="#block1" class="nav-link"><i class="fas fa-code"></i> Проектирование API</a>
+                <a href="#block2" class="nav-link"><i class="fas fa-comments"></i> Коммуникация</a>
+                <a href="#block3" class="nav-link"><i class="fas fa-search"></i> Разбор кейсов</a>
+                <a href="#block4" class="nav-link"><i class="fas fa-chart-line"></i> Анализ API</a>
+                <a href="#summary" class="nav-link"><i class="fas fa-clipboard-check"></i> Итоги</a>
+            </div>
+        </div>
+
+        <!-- Методология -->
+        <section id="methodology" class="section">
+            <h2><i class="fas fa-book"></i> Методология работы</h2>
+            <p>При выполнении тестового задания я применяла системный подход, который сочетает тех. анализ с клиентоориентированной коммуникацией. Каждый блок решался по следующей методологии:</p>
+            
+            <div class="methodology">
+                <div class="methodology-item">
+                    <h4><i class="fas fa-search"></i> Анализ</h4>
+                    <p>Изучение документации, выявление причин проблем, анализ логов и структуры данных (JSON).</p>
+                </div>
+                <div class="methodology-item">
+                    <h4><i class="fas fa-cogs"></i> Решение</h4>
+                    <p>Формулирование понятных и лаконичных решений, проектирование подходов.</p>
+                </div>
+                <div class="methodology-item">
+                    <h4><i class="fas fa-comment-dots"></i> Коммуникация</h4>
+                    <p>Формулирование понятных ответов Партнёрам, составление инструкций, проактивные рекомендации.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок 1: Проектирование API -->
+        <section id="block1" class="section">
+            <h2><i class="fas fa-code"></i> Блок 1: Проектирование API отельного продукта</h2>
+            <p>Минимальный набор методов, необходимых для обеспечения основных бизнес-процессов системы бронирования отелей:</p>
+            
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Функциональность</th>
+                            <th>HTTP-метод</th>
+                            <th>Эндпоинт</th>
+                            <th>Обоснование</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Поиск отелей</strong></td>
+                            <td><span class="tag tag-api">GET</span></td>
+                            <td><code>/api/hotels</code></td>
+                            <td>Базовый поиск с фильтрами (город, даты, гости). Без поиска невозможно начать процесс Бронирования.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Детали отеля и его доступность</strong></td>
+                            <td><span class="tag tag-api">GET</span></td>
+                            <td><code>/api/hotels/{id}/rooms</code></td>
+                            <td>Получение информации о конкретном отеле, типах номеров, ценах и наличии на выбранные даты.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Создание сессии бронирования</strong></td>
+                            <td><span class="tag tag-api">POST</span></td>
+                            <td><code>/api/booking-forms</code></td>
+                            <td>Резервирование номера на короткое время, получение <code>book_hash</code> для продолжения. Защищает от двойного бронирования.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Подтверждение бронирования</strong></td>
+                            <td><span class="tag tag-api">POST</span></td>
+                            <td><code>/api/orders</code></td>
+                            <td>Финальное создание заказа с данными Гостей и оплаты. Это ключевой бизнес-процесс.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Получение информации о брони</strong></td>
+                            <td><span class="tag tag-api">GET</span></td>
+                            <td><code>/api/orders/{id}</code></td>
+                            <td>Просмотр деталей заказа, статуса, условий отмены. Необходимо для информирования Гостя.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Отмена бронирования</strong></td>
+                            <td><span class="tag tag-api">DELETE</span></td>
+                            <td><code>/api/orders/{id}</code></td>
+                            <td>Важная функция для управления заказами, реализована через DELETE как идемпотентный метод.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-check-circle"></i> Обоснование данного набора методов и эндпоинтов</h4>
+                <p>Этот набор методов покрывает полный пользовательский путь (Customer Journey) от поиска отеля до отмены брони. Он включает двухэтапное бронирование (Сессия + Подтверждение), что является отраслевым стандартом для безопасности финансовых транзакций.</p>
+            </div>
+        </section>
+
+        <!-- Блок 2: Коммуникация -->
+        <section id="block2" class="section">
+            <h2><i class="fas fa-comments"></i> Блок 2: Коммуникация и взаимодействие с Партнёром</h2>
+            <p>Это план действий для ситуации, когда активный Партнёр недоволен возможностями API и просит доработать его:</p>
+            
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="20%">Этап</th>
+                            <th>Действия</th>
+                            <th width="25%">Цель</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Сбор информации</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Выслушать Партнёра, проявить эмпатию</li>
+                                    <li>Запросить конкретные примеры: логи, <code>request_id</code>, сценарии использования</li>
+                                    <li>Уточнить бизнес-задачу, которую не решает текущий API</li>
+                                </ul>
+                            </td>
+                            <td>Получить полный контекст проблемы, отделить эмоции от фактов.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Анализ и классификация</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Воспроизвести проблему в тестовом окружении</li>
+                                    <li>Определить тип: баг, недостаток документации, запрос на новую функциональность</li>
+                                    <li>Оценить сложность и влияние на бизнес</li>
+                                </ul>
+                            </td>
+                            <td>Чётко классифицировать запрос для правильного направления работы.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Внутренняя коммуникация</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Создать тикет с полным описанием для команды разработки</li>
+                                    <li>Обсудить с продакт-менеджером приоритет и сроки</li>
+                                    <li>Если возможен временный обход проблемы, то предложить его</li>
+                                </ul>
+                            </td>
+                            <td>Запустить процесс решения, оценить ресурсы и сроки.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Коммуникация с Партнёром</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Дать обратную связь в оговорённые сроки (в т.ч. "приняли в работу")</li>
+                                    <li>Сообщить о сложностях и сроках, если есть препятствия</li>
+                                    <li>Предложить временный обход проблемы, если он есть</li>
+                                    <li>Договориться о следующем контакте</li>
+                                </ul>
+                            </td>
+                            <td>Поддерживать доверие, управлять ожиданиями, снижать недовольство.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Завершение</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Проинформировать об устранении проблемы</li>
+                                    <li>Проверить, что решение работает у Партнёра</li>
+                                    <li>Обновить документацию при необходимости</li>
+                                    <li>Добавить в Базу Знаний для будущих подобных случаев</li>
+                                </ul>
+                            </td>
+                            <td>Решение проблемы, превентивные меры.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="warning-box">
+                <h4><i class="fas fa-lightbulb"></i> Ключевой принцип —</h4>
+                <p>Регулярные обновления. Даже если нет прогресса, все равно необходимо информировать Партнёра о статусе.</p>
+            </div>
+        </section>
+
+        <!-- Блок 3: Разбор кейсов -->
+        <section id="block3" class="section">
+            <h2><i class="fas fa-search"></i> Блок 3: Чтение логов и ответ Партнёру</h2>
+            
+            <!-- Кейс 1 -->
+            <h3>Кейс 1: Ошибка "sandbox_restriction" при вызове Booking Form</h3>
+            
+            <div class="error-box">
+                <h4><i class="fas fa-bug"></i> Технический анализ</h4>
+                <p><strong>Данные запроса:</strong> <code>"book_hash": "h-c8833e24-1d3c-56ba-85a4-ca873e31f6fe"</code></p>
+                <p><strong>Ответ API:</strong> <code>"error": "sandbox_restriction"</code></p>
+                <p><strong>Источник:</strong> <a href="https://docs.emergingtravel.com/docs/fundamentals/sandbox/" target="_blank">Документация Sandbox, раздел "Create booking process"</a></p>
+                <p><strong>Причина:</strong> Конфликт окружений. Запрос с использованием API-ключа Sandbox (Песочницы) отправлен для отеля, который не является тестовым, либо <code>book_hash</code> из Production (Продакшена) используется в Песочнице (или наоборот).</p>
+            </div>
+            
+            <div class="partner-response">
+                <h4><i class="fas fa-reply"></i> Ответ Партнёру (пример)</h4>
+                <p><strong>Тема:</strong> Разбор ошибки «sandbox_restriction» при вызове Booking Form</p>
+                <p>Здравствуйте!</p>
+                <p>Благодарим за обращение. Мы проанализировали ваш запрос и определили причину ошибки.</p>
+                <p><strong>Краткое описание:</strong> Конфликт окружений Sandbox/Production.</p>
+                <p>Эта ошибка возникает, когда запрос с использованием Sandbox API-ключа отправлен для отеля, который не является тестовым, либо когда хэш бронирования (<code>book_hash</code>) из Production используется в Sandbox (или наоборот).</p>
+                <p><strong>Рекомендуемые действия для решения:</strong></p>
+                <ol>
+                    <li>Убедитесь, что все вызовы API в рамках одного потока бронирования идут на один базовый URL: либо на <code>https://sandbox.emergingtravel.com</code> (для тестов), либо на <code>https://api.emergingtravel.com</code> (для рабочих данных).</li>
+                    <li>Проверьте, что ID отеля, с которым работаете, есть в <a href="https://docs.emergingtravel.com/docs/fundamentals/sandbox/" target="_blank">списке тестовых отелей Sandbox</a>. Бронировать в Sandbox можно только их.</li>
+                </ol>
+                <p>Если проблема сохранится, пришлите, пожалуйста, полный лог запроса, включая заголовки.</p>
+                <p>С уважением,<br>Команда поддержки API Ostrovok.</p>
+            </div>
+            
+            <!-- Кейс 2 -->
+            <h3>Кейс 2: Ошибка "booking_form_expired" при вызове Order Booking Finish</h3>
+            
+            <div class="error-box">
+                <h4><i class="fas fa-bug"></i> Технический анализ</h4>
+                <p><strong>Данные запроса:</strong> <code>"partner_order_id": "100211111111111"</code></p>
+                <p><strong>Ответ API:</strong> <code>"error": "booking_form_expired"</code></p>
+                <p><strong>Источник:</strong> <a href="https://docs.emergingtravel.com/docs/fundamentals/sandbox/" target="_blank">Документация Sandbox, раздел "Start booking process"</a></p>
+                <p><strong>Причина:</strong> Поле <code>partner_order_id</code> содержит или имитирует специальный триггер <code>_booking_form_expired</code>, что заставляет систему возвращать эту ошибку. Также возможно истинное истечение времени сессии (15-20 минут между Booking Form и Booking Finish).</p>
+            </div>
+            
+            <div class="partner-response">
+                <h4><i class="fas fa-reply"></i> Ответ партнёру (образец)</h4>
+                <p><strong>Тема:</strong> Разбор ошибки «booking_form_expired» при вызове Order Booking Finish</p>
+                <p>Здравствуйте!</p>
+                <p>Проанализировали ваш запрос на завершение бронирования. Ошибка «booking_form_expired» означает, что сессия бронирования истекла.</p>
+                <p><strong>Детали:</strong> В вашем запросе обнаружено поле <code>"partner_order_id": "100211111111111"</code>. Если этот ID был сформирован с использованием суффикса <code>_booking_form_expired</code>, наша система специально имитирует ситуацию истёкшей сессии — это стандартный способ тестирования такого сценария. Альтернативная причина — превышение времени между вызовами методов Booking Form и Order Booking Finish (стандартный таймаут 15-20 минут).</p>
+                <p><strong>Рекомендуемые действия для решения:</strong></p>
+                <ol>
+                    <li>Проверьте логику формирования <code>partner_order_id</code> в вашей системе. Убедитесь, что для реальных броней не используется тестовый суффикс.</li>
+                    <li>Убедитесь, что между вызовом метода <code>Booking Form</code> и <code>Order Booking Finish</code> проходит не более 15-20 минут.</li>
+                    <li>Реализуйте retry-логику с получением нового <code>book_hash</code> в случае истечения таймаута.</li>
+                </ol>
+                <p>Если вы не использовали тестовый суффикс, пришлите, пожалуйста, точное время обоих запросов — мы проверим логи на нашей стороне.</p>
+                <p>С уважением,<br>Команда поддержки API.</p>
+            </div>
+            
+            <!-- Кейс 3 -->
+            <h3>Кейс 3: Ответы на вопросы по бронированию</h3>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-info-circle"></i> Технический анализ</h4>
+                <p>Из предоставленного JSON необходимо извлечь ответы на три вопроса:</p>
+                
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Вопрос</th>
+                                <th>Где найти в JSON</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Тип оплаты</strong></td>
+                                <td><code>payment_options.payment_types[0].type</code></td>
+                                <td><span class="tag tag-api">hotel</span> (оплата в отеле)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Стоимость бронирования</strong></td>
+                                <td><code>payment_options.payment_types[0].show_amount</code></td>
+                                <td><span class="tag">4664.74 RUB</span> (полная стоимость для показа)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Дополнительные взносы</strong></td>
+                                <td><code>payment_options.payment_types[0].tax_data.taxes</code></td>
+                                <td>
+                                    <span class="tag">city_tax: 100.00 RUB</span><br>
+                                    <span class="tag">cleaning_fee: 1000.00 RUB</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Бесплатная отмена до</strong></td>
+                                <td><code>cancellation_penalties.free_cancellation_before</code></td>
+                                <td><span class="tag tag-success">2023-11-30T12:00:00</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="partner-response">
+                <h4><i class="fas fa-reply"></i> Ответ партнёру (образец)</h4>
+                <p><strong>Тема:</strong> Ответы на ваши вопросы по бронированию h-b7a573f0...</p>
+                <p>Здравствуйте!</p>
+                <p>На основе данных вашего бронирования (<code>book_hash: h-b7a573f0...</code>) отвечаем на вопросы:</p>
+                <ol>
+                    <li><strong>Тип оплаты:</strong> Оплата в отеле (<code>"type": "hotel"</code>). Гость производит расчёт непосредственно на месте заселения.</li>
+                    <li><strong>Стоимость бронирования:</strong>
+                        <ul>
+                            <li>Полная стоимость номера: <strong>4 664.74 RUB</strong>.</li>
+                            <li>Дополнительные сборы (оплачиваются отдельно):
+                                <ul>
+                                    <li>Городской сбор (city_tax): <strong>100.00 RUB</strong></li>
+                                    <li>Плата за уборку (cleaning_fee): <strong>1 000.00 RUB</strong></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Бесплатная отмена:</strong> Бронирование можно отменить бесплатно <strong>до 30 ноября 2023 года, 12:00 по всемирному координированному времени (UTC)</strong>.</li>
+                </ol>
+                <p>Данные актуальны на момент формирования этого бронирования. Для уточнения деталей обратитесь, пожалуйста, в службу поддержки отеля.</p>
+                <p>С уважением,<br>Команда поддержки API Ostrovok.</p>
+            </div>
+        </section>
+
+        <!-- Блок 4: Анализ использования API -->
+        <section id="block4" class="section">
+            <h2><i class="fas fa-chart-line"></i> Блок 4: Анализ использования API</h2>
+            <p>Ситуация: Партнёр запустил промо-акцию на отели в Краснодарском крае, и случилась пиковая нагрузка 487 запросов в минуту.</p>
+            
+            <div class="summary-table">
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Вопрос</th>
+                                <th>Ответ</th>
+                                <th>Обоснование</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Какой метод использовался?</strong></td>
+                                <td><code>/api/b2b/v3/search/serp/region/</code></td>
+                                <td>Промо-акция на отели в определённом регионе (Краснодарский край) предполагает поиск по региону, а не по конкретным отелям.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Будет ли превышен лимит?</strong></td>
+                                <td><span class="tag tag-danger">Да, превышен</span></td>
+                                <td>Лимит: 300 RPM, пиковая нагрузка: 487 RPM<br>
+                                <code>487 / 300 = 162.3%</code> (превышение на 62.3%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Какую ошибку вернёт метод?</strong></td>
+                                <td><span class="tag tag-danger">HTTP 429 Too Many Requests</span></td>
+                                <td>Стандартный HTTP-статус для исчерпания лимита запросов. Может включать заголовок <code>Retry-After</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Рекомендации партнёру</h4>
+                <p><strong>Краткосрочные меры:</strong></p>
+                <ul>
+                    <li>Реализовать механизм повторных попыток с задержкой для запросов, получивших ответ 429.</li>
+                    <li>Добавить кэширование результатов поиска по популярным регионам на 1-2 минуты на своей стороне.</li>
+                </ul>
+                <p><strong>Долгосрочные меры:</strong></p>
+                <ul>
+                    <li>Обсудить с аккаунт-менеджером возможность увеличения лимита для данного метода. Это в случае, если акции/распродажи проходят регулярно, где случается превышение лимитов.</li>
+                    <li>Реализовать предварительную загрузку данных для промо-страниц.</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-cogs"></i> Рекомендации внутренней команде</h4>
+                <p><strong>Для команды интеграций и аккаунт-менеджеров:</strong></p>
+                <ul>
+                    <li>Настроить мониторинг и систему оповещений при достижении 80% от лимита (240 RPM для метода /region/).</li>
+                    <li>Рассмотреть внедрение гибких лимитов, позволяющих кратковременные пики выше среднего.</li>
+                    <li>Для Партнёров, которые планируют промо-акции, предусмотреть процедуру временного увеличения лимитов.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Итоги -->
+        <section id="summary" class="section">
+            <h2><i class="fas fa-clipboard-check"></i> Итоги </h2>
+            
+    <div class="info-card" style="background-color: #f0f9ff; border-left: 5px solid #3b82f6;">
+        <h4><i class="fas fa-user-check"></i> Почему моё решение выделяется?</h4>
+        <p>В процессе выполнения тестового задания я продемонстрировала системный подход и аналитическое мышление. Я знаю, как работает HoReCa изнутри, поэтому мне будет достаточно несложно влиться в рабочий процесс и внутреннюю кухню.</p>
+        
+        <div style="margin: 1.5rem 0; padding: 1.5rem; background: white; border-radius: var(--border-radius); border: 1px solid #e2e8f0;">
+            <h5 style="color: #1e40af; margin-top: 0;"><i class="fas fa-star"></i> Ключевые продемонстрированные навыки:</h5>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                <span class="tag" style="background-color: #dbeafe; color: #1e40af;"><i class="fas fa-search"></i> Глубокий анализ проблем</span>
+                <span class="tag" style="background-color: #d1fae5; color: #065f46;"><i class="fas fa-comments"></i> Клиентоориентированная коммуникация</span>
+                <span class="tag" style="background-color: #fef3c7; color: #92400e;"><i class="fas fa-cogs"></i> Инженерное мышление</span>
+                <span class="tag" style="background-color: #e0e7ff; color: #3730a3;"><i class="fas fa-project-diagram"></i> Системный подход</span>
+                <span class="tag" style="background-color: #fce7f3; color: #9d174d;"><i class="fas fa-lightbulb"></i> Проактивные решения</span>
+            </div>
+        </div>
+        
+        <p><strong>Мой подход к решению задач:</strong></p>
+        <ul>
+            <li>Ищу первопричины, с опорой на документацию.</li>
+            <li>Пишу понятные инструкции для Партнёров на человеческом языке.</li>
+            <li>Стараюсь предлагать превентивные меры, чтобы ошибки не повторялись.</li>
+        </ul>
+    </div>
+    
+    
+    <div class="partner-response" style="background-color: #f7fee7; border-left: 5px solid #65a30d;">
+        <h4><i class="fas fa-rocket"></i> Доп. информация</h4>
+        <p>Этот HTML-отчёт создан для удобного чтения моих решений. Отчёт лежит в моём GitHub-репозитории:</p>
+        
+        <div style="text-align: center; margin: 1.5rem 0;">
+            <a href="https://github.com/Jitwoof/Ostrovok_test_task/" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2rem; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 600; transition: var(--transition);">
+               <i class="fab fa-github fa-2x"></i>
+               <div style="text-align: left;">
+                   <div style="font-size: 1.2rem;">Ostrovok Test Task</div>
+                   <div style="font-size: 0.9rem; opacity: 0.9;">github.com/Jitwoof/Ostrovok_test_task</div>
+               </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="warning-box" style="text-align: center; padding: 2rem;">
+        <h4 style="color: #1e40af; margin-top: 0;"><i class="fas fa-handshake"></i> Готова принести пользу вашей команде!</h4>
+        <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+            Я ищу возможность применять свои навыки аналитики, инженерного мышления и клиентоориентированности в сложных интеграционных задачах, 
+            и уверена, что могу стать ценным членом команды "Островок Tech" уже с первого дня.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+            <div style="flex: 1; min-width: 200px; padding: 1rem; background: #f8fafc; border-radius: var(--border-radius);">
+                <i class="fas fa-bullseye" style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="margin: 0.5rem 0;">Что я дам команде</h5>
+                <p style="font-size: 0.9rem; margin: 0;">Системный подход к решению проблем, проактивность, умение работать с партнёрами</p>
+            </div>
+            <div style="flex: 1; min-width: 200px; padding: 1rem; background: #f8fafc; border-radius: var(--border-radius);">
+                <i class="fas fa-chart-line" style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <h5 style="margin: 0.5rem 0;">Чего я ожидаю</h5>
+                <p style="font-size: 0.9rem; margin: 0;">Сложных задач, профессионального роста, работы в сильной инженерной команде</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+        <footer>
+            <p>Отчёт для тестового задания "Integration Specialist" в "Островок Tech"</p>
+            <p>© 2026 | Кандидат: Юлиана Я.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Установка текущей даты
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Подсветка активного раздела при прокрутке
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop - 100) {
+                    currentSectionId = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSectionId) {
+                    link.classList.add('active');
+                    link.style.backgroundColor = var(--primary-color);
+                    link.style.color = 'white';
+                } else {
+                    link.style.backgroundColor = '';
+                    link.style.color = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
